@@ -8,14 +8,15 @@ import PostView from '../components/PostView'
 export default class Index extends Component{
     constructor(props){
         super(props);
-
-        this._posts = _.groupBy(this.props.posts, 'week');
+        const initialWeek = 0;
+        this._posts = _.groupBy(this.props.posts, 'Week');
         
         this.state = {
-            posts: this._posts,
-            activeWeek: null,
+            posts: this._posts[initialWeek],
+            activeWeek: initialWeek,
             activePost: null,
         }
+        this.changeWeek(initialWeek);
     }
 
     static async getInitialProps(){
@@ -34,7 +35,7 @@ export default class Index extends Component{
                 <style jsx>{`
                 * {
                     transition: 0.5s all;
-                    font-family: 'Garamond';
+                    font-family: 'Cormorant Garamond';
                 }
                 `}</style>
             </div>

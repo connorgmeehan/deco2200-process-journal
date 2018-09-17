@@ -15,7 +15,7 @@ export default class PostView extends Component {
         return(
             <div className={this.state.className}>
                 {this.props.posts.map( (post) => (
-                    <Post date={post.publish_date} week={post.week} title={post.title} body={post.body}/>
+                    <Post post={post}/>
                 ))}
             </div>
         )

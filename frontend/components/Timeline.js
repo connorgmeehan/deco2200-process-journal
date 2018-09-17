@@ -6,7 +6,6 @@ export default class Timeline extends Component{
 
     constructor(props){
         super(props);
-        console.log(this.props.posts);
         let className = "timeline";
         if(this.props.activeWeek!=null){
             className += " timeline-hidden";

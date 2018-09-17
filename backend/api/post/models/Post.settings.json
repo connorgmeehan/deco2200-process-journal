@@ -1,0 +1,55 @@
+{
+  "connection": "default",
+  "collectionName": "post",
+  "info": {
+    "name": "post",
+    "description": "Each journal entry can be retrieved as posts"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "default": "",
+      "type": "string"
+    },
+    "Week": {
+      "default": "",
+      "type": "integer"
+    },
+    "Date": {
+      "default": "",
+      "type": "date"
+    },
+    "P1": {
+      "default": "",
+      "type": "text"
+    },
+    "HeaderImage": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "P2": {
+      "default": "",
+      "type": "text"
+    },
+    "Image1": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "Image2": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "P3": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}
