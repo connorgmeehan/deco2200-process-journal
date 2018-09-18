@@ -1,4 +1,10 @@
+import PropTypes from 'prop-type';
 import {Component} from 'react';
+
+WeekButton.propTypes = {
+    weekChangeCallback: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired,
+}
 
 export default class WeekButton extends Component {
     constructor(props){
@@ -6,9 +12,9 @@ export default class WeekButton extends Component {
     }
 
     render(){
-        console.log(this.props);
+        var handleClick = () => this.props.weekChangeCallback(this.props.posts[0].Week);
         return(
-            <div className="week-button">
+            <div className="week-button" onClick={handleClick}>
                 <span className="week-button-title">Week {this.props.posts[0].Week}</span>
                 <style jsx>{`
                     .week-button {

@@ -12,11 +12,12 @@ export default class PostView extends Component {
     }
 
     render(){
+        console.log(this.props.posts);
         return(
             <div className={this.state.className}>
-                {this.props.posts.map( (post) => (
+                {/* {this.props.posts.map( (post) => (
                     <Post post={post}/>
-                ))}
+                ))} */}
             </div>
         )
     }

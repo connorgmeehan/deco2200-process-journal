@@ -1,22 +1,24 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import _ from 'lodash';
 
 import Timeline from '../components/Timeline'
 import PostView from '../components/PostView'
 
 export default class Index extends Component{
+    _posts = [];
     constructor(props){
         super(props);
         const initialWeek = 0;
-        this._posts = _.groupBy(this.props.posts, 'Week');
+        const cachedPosts = 
+        const weeks = Object.keys(this.props.posts);
         
         this.state = {
-            posts: this._posts[initialWeek],
+            posts: cachedPosts,
             activeWeek: initialWeek,
             activePost: null,
+            activePosts: Object.keys(cachedPosts)[0],
         }
-        this.changeWeek(initialWeek);
+        this.changeWeek = this.changeWeek.bind(this);
     }
 
     static async getInitialProps(){
@@ -30,8 +32,8 @@ export default class Index extends Component{
     render(){
         return (
             <div>
-                <Timeline weekCallback={this.changeWeek} posts={this._posts} activeWeek={this.state.activeWeek} />
-                <PostView posts={this.props.posts} />
+                <Timeline posts={this.state.posts} activeWeek={this.state.activeWeek} weekChangeCallback={this.changeWeek}/>
+                <PostView posts={this.props.activePosts} />
                 <style jsx>{`
                 * {
                     transition: 0.5s all;
@@ -43,6 +45,7 @@ export default class Index extends Component{
     }
 
     changeWeek(week){
-        this.setState({posts: this._posts[week], activeWeek: week});
+        this.setState({activePosts: this.state.posts[Object.keys(this.state.posts)[week]], activeWeek: week});
+        console.log(this.state);
     }
 }
