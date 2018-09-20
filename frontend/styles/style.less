@@ -31,10 +31,25 @@ body {
 
         .week-button {
             cursor:pointer;
-            padding: 20px;
+            padding: 7px 5px 4px 5px;
+            margin: 1px;
+            top: 3px;
+            box-sizing: border-box;
+            &-span {
+                font-weight: bold;
+            }
         }
         .week-button:hover {
-            border: 1px solid @default-color;
+            outline: 1px solid @default-color;
+            text-decoration: underline;
+        }
+        .active {
+            background: black;
+            color: white;
+        }
+        .active:hover {
+            outline: 1px solid white;
+            text-decoration: underline;
         }
     }
 }
