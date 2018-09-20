@@ -1,24 +1,17 @@
-import {Component} from 'react';
-
+import React from 'react';
+    
 import Post from './Post';
 
-export default class PostView extends Component {
+const PostView = ({activeWeek, posts}) => {
+    activeWeek = (activeWeek ? activeWeek : 0);
+    const activePosts = posts.filter(post => post.Week == activeWeek);
+    return (
+        <div className="post-view">
+            {activePosts && activePosts.map( (post, i) => (
+                <Post data={post} key={i}/>
+            ))}
+        </div>
+    )
+}   
 
-    constructor(props){
-        super(props);
-        this.state = {
-            className: "post-view"
-        }
-    }
-
-    render(){
-        console.log(this.props.posts);
-        return(
-            <div className={this.state.className}>
-                {/* {this.props.posts.map( (post) => (
-                    <Post post={post}/>
-                ))} */}
-            </div>
-        )
-    }
-}
+export default PostView;

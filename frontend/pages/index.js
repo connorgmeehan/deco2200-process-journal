@@ -1,51 +1,36 @@
-import React, {Component} from 'react';
-import axios from 'axios'
+import Component from 'react';
+import fetch from 'isomorphic-unfetch';
 
-import Timeline from '../components/Timeline'
-import PostView from '../components/PostView'
+import "../styles/style.less";
 
-export default class Index extends Component{
-    _posts = [];
-    constructor(props){
-        super(props);
-        const initialWeek = 0;
-        const cachedPosts = 
-        const weeks = Object.keys(this.props.posts);
-        
-        this.state = {
-            posts: cachedPosts,
-            activeWeek: initialWeek,
-            activePost: null,
-            activePosts: Object.keys(cachedPosts)[0],
-        }
-        this.changeWeek = this.changeWeek.bind(this);
-    }
+import Header from '../components/Header';
+import PostView from '../components/PostView';
 
-    static async getInitialProps(){
-        const url = 'http://localhost:1337/post';
-        const response = await axios(url);
-        return await {
-            posts: response.data,
-        }
-    }
+class Index extends Component {
 
-    render(){
-        return (
-            <div>
-                <Timeline posts={this.state.posts} activeWeek={this.state.activeWeek} weekChangeCallback={this.changeWeek}/>
-                <PostView posts={this.props.activePosts} />
-                <style jsx>{`
-                * {
-                    transition: 0.5s all;
-                    font-family: 'Cormorant Garamond';
-                }
-                `}</style>
-            </div>
-        )
-    }
-
-    changeWeek(week){
-        this.setState({activePosts: this.state.posts[Object.keys(this.state.posts)[week]], activeWeek: week});
-        console.log(this.state);
-    }
 }
+
+const Index = withRouter((props) => {
+    let weeks = [];
+    // TODO: Make 1 line map function?
+    props.posts.forEach( (post) => {
+        if(!weeks.includes(post.Week)){
+            weeks.push(post.Week);
+        }
+    });
+    weeks.sort();
+    return(
+        <div className="app-root">
+            <Header activeWeek={props.router.query.week} weeks={weeks}/>
+            <PostView activeWeek={props.router.query.week} posts={props.posts} />
+        </div>
+    );
+});
+
+Index.getInitialProps = async ({req}) => {
+    const res = await fetch('http://localhost:1337/post');
+    const data = await res.json();
+    return {posts: data};
+}
+
+export default Index;

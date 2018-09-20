@@ -1,0 +1,86 @@
+@import "variables.less";
+@import "animations.less";
+// Generals
+body {
+    color: @default-color;
+    font-family: @default-font;
+}
+
+
+// HEADER
+
+.header {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    text-align: center;
+
+    h1 {
+        font-size: 1.3em;
+    }
+    h2 {
+        font-size: 1.2em;
+    }
+    h3 {
+        font-size: 0.8em;
+    }
+    .timeline {
+        display: flex;
+        justify-content: space-evenly;
+
+        padding: 50px 0 50px 0;
+
+        .week-button {
+            cursor:pointer;
+            padding: 20px;
+        }
+        .week-button:hover {
+            border: 1px solid @default-color;
+        }
+    }
+}
+
+.post-view {
+    width: 1400px;
+    min-height: 100%;
+    margin: 0 auto;
+    
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+
+    @media @xl {
+        width: @lg-width;
+    }
+    @media @lg {
+        width: @md-width;
+    }
+    @media @md {
+        width: @md-width;
+    }
+
+    @media @sm {
+        width: @sm-width;
+    }
+
+    .post {
+        padding-top:@post-padding/2;
+        padding-bottom:@post-padding/2;
+        border-bottom: 1px solid #999;
+        line-height: 25px;
+        overflow: hidden;
+    }
+    .post.hide {
+        max-height: 0;
+    }
+}
+
+.footer {
+    &-segment{
+        width: 33%;
+        float: left;
+        h5{
+            text-align: center;
+        }
+    }
+}
