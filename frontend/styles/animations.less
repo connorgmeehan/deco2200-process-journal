@@ -1,18 +1,72 @@
 // scrollin animation
-.scroll-in-enter {
+.drop-in-enter {
     height: 0px;
 }
 
-.scroll-in-enter.scroll-in-enter-active {
+.drop-in-enter.drop-in-enter-active {
     height: auto;
-    transition: 700ms;
+    transition: height 2s ease-in;
 }
 
-.scroll-in.leave {
+.drop-in-leave {
     height: auto;
-    transition: 700ms;
+    transition: height 2s ease-in;
 }
 
-.scroll-in-leave.scroll-in-leave-active {
+.drop-in-leave.drop-in-leave-active {
+    height: 0px;
+}
+
+.drop-out-enter {
+    height: auto;
+}
+
+.drop-out-enter.drop-out-enter-active {
+    height: 0;
+    transition: height 1s ease-in;
+}
+
+.drop-out-leave {
+    height: 0;
+    transition: height 1s ease-in;
+}
+
+.drop-out-leave.drop-out-leave-active {
+    height: 0;
+}
+
+.example-enter {
+    opacity: 0;
+    transform:   translate(-250px,0);
+    transform: translate3d(-250px,0,0);
+}
+.example-enter.example-enter-active {
+	opacity: 1;
+	transition: opacity 1s ease;
+	transform:   translate(0,0);
+	transform: translate3d(0,0,0);
+	transition-property: transform, opacity;
+	transition-duration: 300ms;
+	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave {
+	opacity: 1;
+	transform:   translate(0,0,0);
+	transform: translate3d(0,0,0);
+  transition-property: transform, opacity;
+	transition-duration: 300ms;
+	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave.example-leave-active {
+	opacity: 0;
+	transform:   translate(250px,0);
+	transform: translate3d(250px,0,0);
+}
+
+.from-top {
+    height: 0px;
+}
+
+.to-bottom {
     height: 0px;
 }

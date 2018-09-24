@@ -6,13 +6,17 @@ class WeekButton extends Component {
     }
 
     render() {
-        console.log(this.props.isActive);
         let className = "week-button";
         if(this.props.isActive)
-            className += " active";
+            className += " week-button-active";
+
+
+        let content = `Week ${this.props.week}`;
+        if(this.props.week == 0)
+            content = "Foreword";
         return(
-            <div className={className} onClick={this.handleClick} >
-                <span className="week-button-span">Week {this.props.week}</span>
+            <div id={this.props.week} className={className} onClick={this.handleClick} >
+                <span className="span">{content}</span>
             </div>
         )
     }

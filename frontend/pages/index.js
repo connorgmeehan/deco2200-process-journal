@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import fetch from 'isomorphic-unfetch';
 
 import "../styles/style.less";
 
 import Header from '../components/Header';
 import PostView from '../components/PostView';
+import Modal from '../components/Modal';
 
-class Index extends React.Component {
+class Index extends Component {
     constructor(props){
         super(props);
         
@@ -25,9 +26,11 @@ class Index extends React.Component {
         this.state = {
             activeWeek: defaultWeek,
             activePosts: this.posts.filter(post => post.Week == defaultWeek),
-            previousPosts: undefined
+            previousPosts: undefined,
+            modalUrl: undefined
         }
         this.changeWeek = this.changeWeek.bind(this);
+        this.showModal = this.showModal.bind(this);
     }
 
     static async getInitialProps(){
@@ -41,7 +44,8 @@ class Index extends React.Component {
         return (
             <div className="app-root">
                 <Header activeWeek={this.state.activeWeek} weeks={this.weeks} changeWeekCallback={this.changeWeek}/>
-                <PostView activeWeek={this.weeks.activeWeek} activePosts={this.state.activePosts} />
+                <PostView activeWeek={this.weeks.activeWeek} activePosts={this.state.activePosts} previousPosts={this.state.previousPosts} showModalCallback={this.showModal}/>
+                <Modal url={this.state.modalUrl} showModalCallback={this.showModal} />
             </div>
         )
     }
@@ -52,6 +56,13 @@ class Index extends React.Component {
             activePosts: this.posts.filter(post => post.Week == week),
             previousPosts: this.state.activePosts
         })
+    }
+
+    showModal(url){
+        console.log(`Index::showModal - ${url}`);
+        this.setState({
+            modalUrl: url,
+        });
     }
 }
 

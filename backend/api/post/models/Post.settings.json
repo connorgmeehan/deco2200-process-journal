@@ -50,6 +50,12 @@
     "P3": {
       "default": "",
       "type": "text"
+    },
+    "Image3": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
     }
   }
 }
